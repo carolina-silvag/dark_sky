@@ -20,7 +20,7 @@ var iconMap = {
 navigator.geolocation.getCurrentPosition(function(position){
   lat = position.coords.latitude;
   log = position.coords.longitude;
-  fetch('https://api.darksky.net/forecast/bdc0f4652093c10526666c059b217fb8/' + lat + ','+ log + '?units=auto').then(function(response) {
+  fetch('https://api.darksky.net/forecast/3a9144769ee03742ac604f6489994f11/' + lat + ','+ log + '?units=auto').then(function(response) {
     return response.json();
   })
 

@@ -20,26 +20,22 @@ var iconMap = {
 navigator.geolocation.getCurrentPosition(function(position){
   lat = position.coords.latitude;
   log = position.coords.longitude;
-  fetch('https://api.darksky.net/forecast/3a9144769ee03742ac604f6489994f11/' + lat + ','+ log + '?units=auto').then(function(response) {
-    return response.json();
-  })
+  console.log(lat, log);
+  fetch('clima?lat='+lat+'&long='+log)
+    .then(res => res.json())
+    .then(data => {
+      for (var i = 1; i < data.daily.data.length; i++) {
+        let numberDay = data.daily.data[i].time;
+        let d = new Date(numberDay *1000).getDay();
+        nDay.push(d);
 
+        let nameClima = data.daily.data[i].icon;
+        clima.push(nameClima);
 
-  .then(function(data) {
-    console.log(data);
-
-    for (var i = 1; i < data.daily.data.length; i++) {
-      let numberDay = data.daily.data[i].time;
-      let d = new Date(numberDay *1000).getDay();
-      nDay.push(d);
-
-      let nameClima = data.daily.data[i].icon;
-      clima.push(nameClima);
-
-    }
-    data1 = data;
-    init();
-  });
+      }
+      data1 = data;
+      init();
+    });
 });
 
 function init() {

@@ -20,7 +20,6 @@ var iconMap = {
 navigator.geolocation.getCurrentPosition(function(position){
   lat = position.coords.latitude;
   log = position.coords.longitude;
-  console.log(lat, log);
   fetch('clima?lat='+lat+'&long='+log)
     .then(res => res.json())
     .then(data => {
@@ -123,8 +122,4 @@ function week() {
   $('#weather').append(daily);
   $('#btn').append(btnBack);
   $('#btnBack').click(init);
-}
-
-function icon() {
-
 }
